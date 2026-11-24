@@ -412,6 +412,7 @@ HighsModelStatus HighsMipSolverData::trivialHeuristics() {
 
 void HighsMipSolverData::startAnalyticCenterComputation(
     const highs::parallel::TaskGroup& taskGroup) {
+  if (mipsolver.submip) return;
   taskGroup.spawn([&]() {
     // first check if the analytic centre computation should be cancelled, e.g.
     // due to early return in the root node evaluation
